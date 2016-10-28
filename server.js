@@ -26,6 +26,13 @@ app.get('/rest/travel/:question', function (req, res) {
     })
 });
 
-app.listen(3000, function () {
-  console.log('Server is listening on port 3000!');
+// Demo purpses - respond with host where the app is served from
+app.get('/rest/hostname', function (req, res) {
+  res.send('Brought to you by: ' + process.env.HOSTNAME);
+});
+
+// Initialize the app.
+var server = app.listen(process.env.PORT || 3000, function () {
+  var port = server.address().port;
+  console.log("App now running on port", port);
 });
